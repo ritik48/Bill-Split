@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "./Button";
 
-export function BillSplit({ friend, setFriends }) {
+export function BillSplit({ friend, setFriends, onBillSplit }) {
     const [billAmt, setBillAmt] = useState("");
     const [expense, setExpense] = useState("");
     const [payBy, setPayBy] = useState("You");
@@ -10,21 +10,8 @@ export function BillSplit({ friend, setFriends }) {
 
     function handleForm(e) {
         e.preventDefault();
-        setFriends((friends) =>
-            friends.map((currentFriend) => {
-                if (currentFriend.id === friend.id) {
-                    if (payBy === "You") {
-                        return {
-                            ...friend,
-                            balance: friend.balance + friendExpense,
-                        };
-                    } else {
-                        return { ...friend, balance: friend.balance - expense };
-                    }
-                }
-                return currentFriend;
-            })
-        );
+
+        onBillSplit(payBy === "You" ? friendExpense : -expense);
     }
 
     return (

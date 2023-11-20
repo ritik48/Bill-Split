@@ -64,6 +64,10 @@ select {
     pointer-events: none;
 }
 
+.selected {
+    background-color: rgb(253, 223, 223);
+}
+
 /* =================== friend ============== */
 
 .left__container {

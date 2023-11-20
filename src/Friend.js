@@ -3,7 +3,11 @@ import { Button } from "./Button";
 export function Friend({ friend, onSelectFriend, selectedFriend }) {
     const id = friend.id;
     return (
-        <div className="friend flex flex_ai">
+        <div
+            className={`friend flex flex_ai ${
+                selectedFriend === id ? "selected" : ""
+            }`}
+        >
             <img className="friend__img" src={friend.image} alt="" />
             <div className="friend__detail">
                 <div className="friend__name">{friend.name}</div>

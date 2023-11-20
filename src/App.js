@@ -7,19 +7,19 @@ import { Button } from "./Button";
 const friendsData = [
     {
         id: 1,
-        name: "Clark",
+        name: "Like",
         balance: -7,
         image: "https://i.pravatar.cc/48?u=464548",
     },
     {
         id: 2,
-        name: "Sarah",
+        name: "The",
         balance: 20,
         image: "https://i.pravatar.cc/48?u=46454wefw-wef8",
     },
     {
         id: 3,
-        name: "Anthony",
+        name: "Post",
         balance: 30,
         image: "https://i.pravatar.cc/48?u=464w84rwf8548",
     },
@@ -53,6 +53,17 @@ export default function App() {
         setFriends((friends) => [...friends, friend]);
     }
 
+    function handleBillSplit(value) {
+        setFriends((friends) =>
+            friends.map((friend) =>
+                friend.id === selectedFriend
+                    ? { ...friend, balance: friend.balance + value }
+                    : friend
+            )
+        );
+        setSelectedFriend(null);
+    }
+
     return (
         <>
             <h1>💰 Bill Split</h1>
@@ -77,6 +88,7 @@ export default function App() {
                                 (f) => f.id === selectedFriend
                             )}
                             setFriends={setFriends}
+                            onBillSplit={handleBillSplit}
                         />
                     </div>
                 )}
